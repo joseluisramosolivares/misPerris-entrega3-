@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+
+{% block contenido %}
+
+<form action="" method="post" enctype="multipart/form-data">
+    <!--comentario-->
+    
+    {% csrf_token %}
+    <h1>Registro de Mascota</h1>
+    <br>
+    <label for="">Nombre</label>
+    <input type="text" name="txtNombre" id="txtNombre">
+    <br>
+    <label for="">Raza</label>
+    <select name="cboRaza" id="cboRaza">
+        <option value="">Seleccionar</option>
+        {% for r in razas %}
+            <option value="{{ r.id }}">{{ r.nombre }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label for="">Genero</label>
+    <input type="text" name="txtGenero" id="txtGenero">
+      <!--<select name="cboGenero" id="cboGenero">
+        <option value="">Seleccionar</option>
+        {% for g in generos %}
+            <option value="{{ g.id }}">{{ g.nombre }}</option>
+        {% endfor %}
+        
+    </select>
+-->
+    <br>
+    <label for="">FechaIngreso</label>
+    <input type="date" name="txtFechaIngreso" id="txtFechaIngreso">
+    <br>
+    <label for="">FechaNacimiento</label>
+    <input type="date" name="txtFechaNacimiento" id="txtFechaNacimiento">
+    <br>
+    <label for="">Descripcion</label>
+    <input type="text" name="txtDescripcion" id="txtDescripcion">
+    <br>
+    <label for="">Estado</label>
+    <select name="cboEstado" id="cboEstado">
+        <option value="">Seleccionar</option>
+        {% for e in estados %}
+            <option value="{{ e.id }}">{{ e.nombre }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label>Imagen</label>
+    <input type="file" name="txtImagen" id="txtImagen">
+
+    <br>
+    <br>
+    <input type="submit" value="Guardar">
+    
+
+</form>
+
+<h3>{{ mensaje }}</h3>
+
+{% endblock contenido %}

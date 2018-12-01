@@ -1,0 +1,58 @@
+
+
+{% extends 'core/base.html' %} {% block contenido %}
+
+<h1>Listado de mascotas</h1>
+<br>
+<br>
+<br>
+
+<table>
+    <tr>
+        <th>Nombre</th>
+        <th>Raza</th>
+        <th>Genero</th>
+        <th>Fecha Ingreso</th>
+        <th>Fecha Nacimiento</th>
+        <th>Descripcion</th>
+        <th>Imagen</th>
+        <th>Estado</th>
+    </tr>
+    {# por cada fila de la BBDD creamos una fila de la tabla #}
+     {% for masco in mascotas %}
+
+    <tr>
+        <td>{{ masco.nombre }}</td>
+        <td>{{ masco.raza }}</td>
+        <td>{{ masco.genero }}</td>
+        <td>{{ masco.fecha_ingreso }}</td>
+        <td>{{ masco.fecha_nacimiento }}</td>
+        <td>{{ masco.descripcion }}</td>
+        <td>
+        {% if masco.imagen %}
+        <img src="{{ masco.imagen.url }}" width="100" height="100" alt="">
+        {% endif %}
+        </td>
+        <td>{{ masco.estado }}</td>
+        <td>
+            <a href="{% url 'eliminar' masco.id %}">Eliminar</a>
+            <a href="{% url 'modificar' masco.id %}">Modificar</a>
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+
+</table>
+
+<!--Primero preguntamos si hay mensajes que mostrar-->
+
+{% if messages %}
+<!--recorremos todos los mensajes y los mostramos-->
+    {% for m in messages %}
+        <div>{{ m }}</div>
+    {% endfor %}
+{% endif %}
+
+{% endblock contenido %}

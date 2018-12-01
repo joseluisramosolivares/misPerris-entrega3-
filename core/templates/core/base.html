@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!--cargamos el plugin pwa-->
+{% load pwa %}
+<head>
+    <!--cargamos el service worker-->
+    {% progressive_web_app_meta %}
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MisPerris</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'core/css/estilos.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.3.5/jquery.fancybox.min.js"></script>
+    <script src="{% static 'core/js/inicializacion.js' %}"></script>
+    <script src="{% static 'core/js/combo.js' %}"></script>
+</head>
+<body>
+    <!--este es un comentario-->
+   <header>   
+        <div class="logo2">
+            <img class="logo" src="{% static 'core/img/logo.png' %}" alt="logo">
+        </div>
+
+        <div class="navegacion_container">
+           <ul class="navegacion">
+           <li>
+               <a href="#">Inicio</a>
+           </li>
+           <li>
+               <a href="#">Quienes Somos</a>
+           </li>
+           <li>
+               <a href="#">Servicios</a>
+           </li>
+           <li>
+               <a href="#">Contactanos</a>
+           </li>
+
+           {% if request.user.is_authenticated %}
+           <li>
+               <a href="{% url 'logout' %}">Cerrar Sesión</a>
+           </li>
+           <li>
+               <a href="">{{ request.user.first_name }}</a>
+           </li>
+           {% else %}
+
+           <li>
+               <a href="{% url 'login' %}">Iniciar Sesion</a>
+           </li>
+           <li>
+               <a href="{% url 'register' %}">Registrar</a>
+           </li>
+           {% endif %}
+
+           </ul>
+        </div>
+    </header>
+
+    <div class="landing">
+        <div class="slider">
+           <div>
+              <img title="Adoptado tom" class="imagen_landing" src="{% static 'core/img/Tom.jpg' %}" alt="tom">
+           </div>
+
+           <div>
+              <img title="adoptado duque " class="imagen_landing" src="{% static 'core/img/Duque.jpg' %}" alt="duque">
+           </div>
+
+           <div>
+              <img title="Adoptado apolo" class="imagen_landing" src="{% static 'core/img/Apolo.jpg' %}" alt="apolo">
+
+           </div>
+
+        </div>
+        <div class="landing_inferior">
+            <h3 class="color_blanco centar_texto">+ 56 9 6666666</h3>
+            <h4 class="color_blanco centar_texto">Rescate y adopcion de perros callejeros</h4>
+            <ul class="social">
+                <li>
+                    <a href="http://twitter.com">
+                        <img src="{% static 'core/img/social-twitter.png' %} " alt="twitter">
+                    </a>
+                </li>
+                <li><img src="{% static 'core/img/socialfacebook.png' %}" alt="facebook"></li>
+                <li><img src="{% static 'core/img/social-inst.png' %}" alt="instagram"></li>
+                <li><img src="{% static 'core/img/socialplus.png' %}"></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="contenido">
+        <div align="right">
+            <h1>RESCATE</h1>
+            <p>Etapa uno</p>
+            <p>____</p>
+            <br>
+            <p>Rescatamos perros en situación de peligro y/o abandono. Los rehabilitamos y los</p>
+            <p>preparamos para buscarles un hogar</p>
+            <br>
+            <img class="imagen_rescate" src="{% static 'core/img/rescate.jpg' %}" alt="rescate">
+        </div>
+
+        <div style="margin:30px">
+            <img class="imagen_crowfunding" src="{% static 'core/img/crowfunding.jpg' %}" alt="crowfunding">
+            <h1>CROWFUNDING</h1>
+            <p>Financiamiento</p>
+            <p>____</p>
+            <br>
+            <p>Sigue nuestras redes sociales para informarte acerca de las diversas campañas y</p>
+            <p>actividades que realizamos para obtener financiamiento para seguir ayudando.</p>
+            <button><b>CAMPAÑAS</b></button>
+        </div>
+        
+    </div>
+    <div class="contenido_galeria">
+        <div class="galeria">
+            <a data-fancybox="gallery" href="img/Oso.jpg"><img src="{% static 'core/img/Oso.jpg' %}"></a>
+            <a data-fancybox="gallery" href="img/Chocolate.jpg"><img src="{% static 'core/img/Chocolate.jpg' %}"></a>
+            <a data-fancybox="gallery" href="img/Bigotes.jpg"><img src="{% static 'core/img/Bigotes.jpg' %}"></a>
+            <a data-fancybox="gallery" href="img/Maya.jpg"><img src="{% static 'core/img/Maya.jpg' %}"></a>
+            <a data-fancybox="gallery" href="img/Pexel.jpg"><img src="{% static 'core/img/Pexel.jpg' %}"></a>
+            <a data-fancybox="gallery" href="img/Luna.jpg"><img src="{% static 'core/img/Luna.jpg' %}"></a>
+            <a data-fancybox="gallery" href="img/Wifi.jpg"><img src="{% static 'core/img/Wifi.jpg' %}"></a>
+        </div>
+    </div>
+
+
+    <div class="contenido">
+         {% block contenido %}
+
+         {% endblock contenido %}
+    </div>
+    <footer>
+        <p class="color_negro">Desarrollo web y mobile</p>
+    </footer>
+ 
+</body>
+</html>

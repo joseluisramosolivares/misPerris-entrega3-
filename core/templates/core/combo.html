@@ -1,0 +1,11 @@
+
+{% extends 'core/base.html'%}
+
+{% block contenido %}
+
+<option value="">Seleccionar</option>
+  {% for c in ciudades %}
+     <option value="{{ r.id }}">{{ c.regionid }}</option>
+  {% endfor %}
+
+{% endblock contenido %}
